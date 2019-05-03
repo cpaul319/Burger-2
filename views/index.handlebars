@@ -1,0 +1,49 @@
+
+<div id="heading">
+<h1>Eat Da Burger!</h1>
+</div>
+  <div class="grid-container">
+      
+                {{!-- <div class="jumbotron"> --}}
+<div class="burger">
+<h2>List of Burgers</h2>
+
+<ol>
+  {{#each burgers}}
+    {{#unless devoured}}
+      {{> burgers/burger-block devour=true}}
+    {{/unless}}
+  {{/each}}
+</ol>
+</div>
+<div class="devouredBurger">
+<h2>Burgers that were eaten</h2>
+ 
+<ol>
+  {{#each burgers}}
+    {{#if devoured}}
+      {{> burgers/burger-block devour=false}}
+    {{/if}}
+  {{/each}}
+</ol>
+</div>
+                </div>
+  </div>
+  <div class="grid-container">
+
+<form class="create-form" >
+
+  <div class="form-group" id="item1">
+    <label for="burger"><h2>Add a Burger</h2></label>
+    <input type="text" id="burger" name="name">
+  </div>
+
+   <input type="radio" name="devoured" style="opacity: 0" value="0" checked><br>
+  
+
+
+  <button type="submit">Submit</button>
+</form>
+ </div>   
+
+

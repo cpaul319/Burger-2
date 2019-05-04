@@ -1,7 +1,3 @@
-INSERT INTO burgers (name,devoured)
-VALUES ("Veggie Burger", false),
-("Bacon Burger",false),
-("Cheese Burger", false)
- 
-
- 
+INSERT INTO burgers (burger_name, date_created, date_eaten, devoured) VALUES ('Cheese Burger', NOW(), NOW(), FALSE);
+INSERT INTO burgers (burger_name, date_created, date_eaten, devoured) VALUES ('Hamburger', NOW(), NOW(), FALSE);
+INSERT INTO burgers (burger_name, date_created, date_eaten, devoured) VALUES ('Pizza Burger', NOW(), NOW(), FALSE);

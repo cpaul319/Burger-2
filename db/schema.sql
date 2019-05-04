@@ -1,14 +1,17 @@
-### Schema
-DROP DATABASE IF EXISTS burger_db;
-CREATE DATABASE burger_db;
-USE burger_db;
+CREATE DATABASE IF NOT EXISTS burgers_db;
+USE burgers_db;
 
-CREATE TABLE burgers
-(
-	id int NOT NULL AUTO_INCREMENT,
-	name varchar(255) NOT NULL,
-	devoured BOOLEAN DEFAULT false,
-	PRIMARY KEY (id)
-);
-  
-select * from burgers;
+# If the table already exists, remove it before trying to create the table again
+DROP TABLE IF EXISTS burgers;
+DROP TABLE IF EXISTS customers;
+
+-- # Create the burgers table
+-- CREATE TABLE burgers (
+-- id INT NOT NULL AUTO_INCREMENT,
+-- burger_name VARCHAR(255) NOT NULL,
+-- date_created DATETIME NOT NULL,
+-- devoured BOOL DEFAULT false,
+-- eater_id VARCHAR(255),
+-- date_eaten DATETIME,
+-- PRIMARY KEY (id)
+-- );

@@ -83,15 +83,15 @@ module.exports = app => {
     }
   });
 };
-app.delete("/user/:id", function(req, res) {
-  // We just have to specify which user we want to destroy with "where"
-  db.Todo.destroy({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(dbTodo) {
-    res.json(dbTodo);
-  });
+// app.delete("/user/:id", function(req, res) {
+//   // We just have to specify which user we want to destroy with "where"
+//   db.Todo.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function(dbTodo) {
+//     res.json(dbTodo);
+//   });
 
-});
+// });
 

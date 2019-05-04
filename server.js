@@ -2,7 +2,7 @@ var express = require("express");
 var db = require("./models");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 8080;
 var app = express();
 db.sequelize.sync().then(function(){
   app.listen(PORT, function(){
@@ -24,7 +24,5 @@ require("./routes/api-routes.js")(app);
 // app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
-app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
-});
+ 
+

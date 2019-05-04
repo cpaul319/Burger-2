@@ -40,12 +40,12 @@ module.exports = app => {
 
   // when devour button is pressed
   app.put("/burgers/update", (req, res) => {
-    var UserName = req.body.eaten_by;
+    var userName = req.body.eaten_by;
     // var userNameTrim = userName.toLowerCase().trim();
 
     db.User
       .findAll({
-        where: { user_name:UserName }
+        where: { user_name: userName }
       })
       .then(data => {
         if (data.length > 0) {
@@ -57,13 +57,13 @@ module.exports = app => {
           console.log("creating new customer");
           db.User
             .create({
-              user: req.body.eaten_by
+              user_name: req.body.eaten_by
             })
             .then(data => devour(data.dataValues.id));
         }
       });
 
-    function devour(customer) {
+    function devour(user) {
       console.log("devouring");
 
       // mark burger as devoured and record the id of the customer who ate it
@@ -83,3 +83,15 @@ module.exports = app => {
     }
   });
 };
+app.delete("/user/:id", function(req, res) {
+  // We just have to specify which user we want to destroy with "where"
+  db.Todo.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(dbTodo) {
+    res.json(dbTodo);
+  });
+
+});
+

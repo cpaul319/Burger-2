@@ -5,44 +5,55 @@
   <div class="grid-container">
       
                 {{!-- <div class="jumbotron"> --}}
-<div class="burger">
+<div class="row burger">
 <h2>List of Burgers</h2>
-
-<ol>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devour=true}}
-    {{/unless}}
-  {{/each}}
-</ol>
-</div>
-<div class="devouredBurger">
+				{{#each burgers}}
+				{{#unless this.devoured}}
+				<div class="card col-6 my-1">
+					<div class="text-center my-auto">
+						<div>
+							<p>{{this.id}}. {{this.name}}</p>
+							<p>Added On: {{this.date_created}}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 text-center">
+					<form method="POST" action="/burgers/update?_method=PUT" class="button-size">
+						<input type="hidden" type="text" name="burger_id" value={{this.id}}><br>
+						{{!-- enter eater name here --}}
+						<input class="my-1" type="text" name="eaten_by"  placeholder="Eaten by"><br>
+						<button type="submit" class="btn btn-default">Devour it!</button>
+					</form>
+				</div>
+				{{/unless}}
+				{{/each}}
+			</div>
+		</div>
+<div class="row devouredBurger">
 <h2>Burgers that were eaten</h2>
  
-<ol>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devour=false}}
-    {{/if}}
-  {{/each}}
-</ol>
+		<div class="col-4 text-center" class="task">
+			{{!-- post eaten burgers here --}}
+			{{#each burgers}}
+			{{#if this.devoured}}
+			<input class="form-control" type="text" placeholder="{{this.id}}. {{this.name}}. Eaten by {{this.User.dataValues.user_name}}" readonly>
+			{{!-- include name of eater --}}
+			{{/if}}
+			{{/each}}
+		</div>
+	</div>
 </div>
-                </div>
-  </div>
-  <div class="grid-container">
-
-<form class="create-form" >
-
-  <div class="form-group" id="item1">
-    <label for="burger"><h2>Add a Burger</h2></label>
-    <input type="text" id="burger" name="name">
-  </div>
-
-   <input type="radio" name="devoured" style="opacity: 0" value="0" checked><br>
-  
-
-
-  <button type="submit">Submit</button>
+<div class="container">
+	<div class="row">
+		<div class="col-12 text-center enter_section">
+			<form action="/burgers/create" method="POST">
+				{{!-- enter burger name here --}}
+				<input type="text" class="form-control" name="name" value="" id="enter_text">
+				<button type="submit" class="btn btn-danger" id="text-enter-button">Add a burger</button>
+			</form>
+		 
+		</div>
+	</div>
 </form>
  </div>   
 
